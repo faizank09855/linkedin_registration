@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:my_login/homeScreen_module/homeScreen.dart';
 import 'login_module/Screens/loginScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+import 'login_module/Services/loginService.dart';
 
 Future <void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,13 +25,26 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
     super.initState();
   }
+  var user;
+  void userCheck() async{
+    user = await auth.userChanges();
+    if(user!= null){
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (BuildContext context) => HomeScreen())); }
+    else{
+
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (BuildContext context) => LoginScreen()));
+    }
+
+    }
+
 
   @override
   Widget build(BuildContext context) {
     Timer(
         const Duration(seconds: 3),
-        () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => LoginScreen())));
+        () => userCheck());
     return Scaffold(
       body: Center(
         child: Column(

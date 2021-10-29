@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_login/homeScreen_module/homeScreen.dart';
 import 'package:my_login/login_module/Screens/loginSuccessScreen.dart';
 import 'package:my_login/login_module/Screens/registrationScreen.dart';
 import 'package:my_login/login_module/Services/loginService.dart';
@@ -7,7 +8,6 @@ import 'package:my_login/login_module/Services/GoogleSignInService.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
-
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -21,6 +21,12 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool obScure = true;
   var obScureIcon = Icons.remove_red_eye_outlined;
+@override
+  void initState(){
+    // TODO: implement initState
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {
